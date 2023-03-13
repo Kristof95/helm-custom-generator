@@ -1,0 +1,75 @@
+replicaCount: 1
+
+image:
+  repository: DUMMY_IMAGE_REPOSITORY
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "DUMMY_IMAGE_TAG"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: DUMMY_SERVICE_PPORT
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: DUMMY_INGRESS_PLACEHOLDER
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+configMap: DUMMY_CONFIGURATION
+secretMap: DUMMY_SECRETS
+resources:
+  limits:
+    cpu: DUMMY_RESOURCE_LIMIT_CPU
+    memory: DUMMY_RESOURCE_LIMIT_MEMORY
+  requests:
+    cpu: DUMMY_RESOURCE_REQUEST_CPU
+    memory: DUMMY_RESOURCE_REQUEST_MEMORY
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
